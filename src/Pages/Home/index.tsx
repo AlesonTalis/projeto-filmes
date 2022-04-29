@@ -20,8 +20,10 @@ export default function Home() {
             return (
               <div className="filmiss-block">
                 <img src={link} alt={link} className="img-bg" />
-                <div className="description">
-                  <h2 className="title">%FilmeTitulo%</h2>
+                <a href={'/detail/0'} className="description">
+                  <h2 className="title">
+                    %FilmeTitulo%
+                  </h2>
                   <div className="flex-row">
                     <div className="genre">%Genero%</div>
                     <div className="duration">%duracao%</div>
@@ -34,7 +36,7 @@ export default function Home() {
                       starRatedColor={'gold'}
                     />
                   </div>
-                </div>
+                </a>
               </div>
             )
           })}

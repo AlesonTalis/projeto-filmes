@@ -1,0 +1,32 @@
+
+header
+{
+  height: 4em;
+  width: 100%;
+  align-items: center;
+  border-bottom: var(--border-width) solid var(--text-color);
+  margin-bottom: var(--padding);
+}
+
+header > div
+{
+  flex: 1;
+  width: var(--max-width);
+
+}
+
+.logo {flex:1}
+
+.logo a
+{
+  font-size: 2em;
+}
+
+.menu li
+{
+  padding: 0 var(--padding);
+}
+.menu li a
+{
+  padding: var(--padding) calc(var(--padding) * 1.5);
+}

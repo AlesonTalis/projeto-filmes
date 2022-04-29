@@ -1,0 +1,45 @@
+
+.search-block > *
+{
+  border-radius: 0;
+}
+
+.search-block .inp-text
+{
+  --inp-width: 15em;
+
+  transition: width 200ms ease, padding 200ms ease, margin 200ms ease;
+  width: 0;
+  border-radius: 0;
+}
+
+.search-block:not(.inp-focus) .inp-text
+{
+  width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  /* margin-left: -0.2em; */
+  margin-right: -0.2em;
+}
+
+.search-block.inp-focus .inp-text
+{
+  width: var(--inp-width);
+  /* animation: hide-input 200ms reverse 0ms 1; */
+}
+
+@keyframes hide-input {
+  0%{
+    opacity: 0;
+    width: 0;
+  }
+  10% {
+    opacity: 1;
+    width: 0;
+  }
+  100%
+  {
+    opacity: 1;
+    width: var(--inp-width);
+  }
+}

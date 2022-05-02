@@ -1,0 +1,30 @@
+.detail-area
+{
+  padding: var(--padding);
+}
+
+.actors
+{
+  display: grid;
+
+  grid-template-rows: repeat(1fr);
+}
+
+.actors .actor
+{
+  padding: var(--padding);
+}
+
+.description-area
+{
+  display: grid;
+  grid-template-columns: 30% 5% 65%;
+}
+
+.description-area > *:first-child {grid-column: 1;}
+.description-area > *:last-child {grid-column: 3;}
+
+.actor-title
+{
+  background-color: rgba(255, 255, 255, 0.25);
+}

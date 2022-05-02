@@ -95,6 +95,9 @@ body.dark
 
 .pr{padding-right: var(--padding);}
 .pl{padding-left: var(--padding);}
+.pt,.pt-1{padding-top: var(--padding)}
+.pt-2{padding-top: calc(var(--padding) * 2)}
+.pt-3{padding-top: calc(var(--padding) * 3)}
 
 
 

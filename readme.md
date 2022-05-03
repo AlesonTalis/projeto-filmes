@@ -31,7 +31,7 @@ O sistema de favoritos utiliza `localStorage` para salvar o id dos filmes, em fo
 ## Para testar
 
 ``` 
-git clone https://github.com/alesontalis/projeto-filmiss
+git clone https://github.com/AlesonTalis/projeto-filmes
 
 cd ./projeto-filmiss
 

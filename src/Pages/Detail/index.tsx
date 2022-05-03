@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-import { FaUser } from 'react-icons/fa'
+import { FaUser, FaHeart } from 'react-icons/fa'
 import { BiCrown, BiBook } from 'react-icons/bi'
 
 import { useParams } from 'react-router-dom'
@@ -15,12 +15,24 @@ import './style.css'
 const link = 'https://m.media-amazon.com/images/M/MV5BNjE4NzJkMmUtNzkwYy00YmI1LTg2ZDgtNWI3ZWQyNmZmNWQwXkEyXkFqcGdeQXVyMTA4Nzk5ODAy._V1_SX300.jpg'
 
 import { omdbapi, language } from '../../Include/variables'
+import { addFavorite, favorites, favoritesList, isFavorite, removeFavorite } from '../../Include/Storage'
 
 export default function Detail() {
   const [loading,setLoading] = useState(true)
   const [data,setData] = useState<any>(null)
   const [actors,setActors] = useState([])
   const [time,setTime] = useState<number>(0)
+  const [favorite,setFavorite] = useState<boolean>(false)
+
+  const addToFavorites = (index = '') => {
+    if (isFavorite(index) === true)
+      removeFavorite(index)
+    else
+      addFavorite(index)
+    
+    // console.log(favorites.toString())
+    setFavorite(isFavorite(index))
+  }
 
   let params = useParams()
 
@@ -33,7 +45,8 @@ export default function Detail() {
         .then(json => {
           if (json.Error)
           {
-            console.log(json.Error)
+            console.log(json.Error + imdbID)
+            console.log(imdbID + ' -')
             return
           }
           setData(json)
@@ -41,6 +54,8 @@ export default function Detail() {
           if (json.Actors) setActors(json.Actors.split(', '))
           var t = json.Runtime.split(' ')[0]
           setTime(t !== 'N/A' ? 0 : +t)
+
+          setFavorite(isFavorite(json.imdbID))
         })
         // .catch(({Response}) => {
         //   console.log(Response)
@@ -66,7 +81,19 @@ export default function Detail() {
               <div className="flex-row bottom">
                 <img src={data.Poster} alt={data.Poster} />
                 <div className="flex-col pl">
-                  <h1>{data.Title}</h1>
+                  <div className="flex-row flex-center pb">
+                    <h1 className="pr-1">{data.Title}</h1>
+                    <a 
+                      href={"#"}
+                      onClick={(e) => {
+                        e.preventDefault()
+
+                        addToFavorites(data.imdbID)
+                      }}
+                    >
+                      <FaHeart color={favorite ? 'red' : 'gray'} size={'2em'}/>
+                    </a>
+                  </div>
                   <div className="flex-row flex-center">
                     <h2 className="pr">{data.Year}</h2>
                     {data.imdbRating && data.imdbRating !== 'N/A' ? (

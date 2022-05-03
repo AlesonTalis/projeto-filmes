@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import { omdbapi } from "../../Include/variables"
+import MovieBlock from "../MovieBlock"
 
 interface ISearch
 {
@@ -43,26 +44,7 @@ export default function SearchBlock({search = '', page = ''})
         <div className="filmiss grade-3">
           {searchArray.map((d,i) => {
             return(
-              <div key={d.imdbID} className="filmiss-block">
-                <img src={d.Poster} alt={d.Poster} className="img-bg" />
-                <a href={'/detail/' + d.imdbID} className="description">
-                  <h2 className="title">
-                    {d.Title}
-                  </h2>
-                  <div className="flex-row">
-                    <div className="genre">{d.Year}</div>
-                    {/* <div className="duration">%duracao%</div> */}
-                  </div>
-                  {/* <div className="rating">
-                    <StarRatings
-                      rating={6.6/2}
-                      numberOfStars={5}
-                      starDimension={'1em'}
-                      starRatedColor={'gold'}
-                    />
-                  </div> */}
-                </a>
-              </div>
+              <MovieBlock key={d.imdbID} imdbID={d.imdbID} Title={d.Title} Poster={d.Poster} Year={d.Year} type={'block'}/>
             )
           })}
         </div>
